@@ -1,0 +1,240 @@
+/* ==================================================================
+   📺 BINGE FINDER — styles.css
+   Yesterday's dark "streaming app" look + two 🆕 DAY 14 blocks at the
+   bottom (light theme and the ☆ favorite button).
+   Students copy-paste this file. It is not the lesson.
+   ================================================================== */
+
+/* Colors live in one place so they're easy to change. */
+:root {
+  --bg: #0f1b2d;
+  --panel: #16253d;
+  --border: #34507e;
+  --text: #e6edf8;
+  --muted: #afc2df;
+  --accent: #f2a541; /* orange */
+  --blue: #82aaff;   /* loading */
+  --green: #a5d6a7;  /* success */
+  --coral: #e8836a;  /* error */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 24px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  line-height: 1.4;
+  transition: background 0.3s, color 0.3s;
+}
+
+h1 {
+  margin: 0 0 16px;
+  color: var(--accent);
+}
+
+h2 {
+  margin: 0 0 12px;
+  font-size: 1.1rem;
+  color: var(--muted);
+}
+
+/* ---------- Search box ---------- */
+label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--muted);
+}
+
+input[type="search"] {
+  width: 100%;
+  max-width: 420px;
+  padding: 10px 14px;
+  border: 2px solid var(--border);
+  border-radius: 999px;
+  background: var(--panel);
+  color: var(--text);
+  font-size: 1rem;
+}
+
+input[type="search"]:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+/* ---------- The 4 moods ---------- */
+#status {
+  min-height: 1.4em;
+  font-weight: 600;
+}
+
+#status[data-state="loading"] { color: var(--blue); }
+#status[data-state="success"] { color: var(--green); }
+#status[data-state="empty"]   { color: var(--muted); }
+#status[data-state="error"]   { color: var(--coral); }
+
+/* ---------- Layout: list on the left, details on the right ---------- */
+main {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+  margin-top: 16px;
+}
+
+@media (max-width: 800px) {
+  main {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- The poster grid ---------- */
+#list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 14px;
+}
+
+.card__btn {
+  width: 100%;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  background: var(--panel);
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+
+.card__btn:hover,
+.card__btn:focus-visible {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: 0 0 18px rgba(242, 165, 65, 0.45);
+  outline: none;
+}
+
+.card__btn img,
+.no-art {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.no-art {
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+  font-size: 3rem;
+}
+
+.card__name {
+  font-weight: 700;
+}
+
+.card__meta {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* ---------- Detail panel ---------- */
+#detail {
+  position: sticky;
+  top: 24px;
+  padding: 20px;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  background: var(--panel);
+}
+
+#detail h3 {
+  margin-top: 0;
+  color: var(--accent);
+}
+
+.summary {
+  color: var(--muted);
+}
+
+
+/* ==================================================================
+   🆕 DAY 14 · Light theme
+   scripts.js adds class="light" to <body>. These new colors win
+   because they're set on body, which is closer than :root.
+   ================================================================== */
+body.light {
+  --bg: #f4f1ea;
+  --panel: #fffdf8;
+  --border: #d9d2c3;
+  --text: #14213d;
+  --muted: #4a5568;
+  --accent: #c2410c;
+  --green: #2e7d32;
+  --blue: #1d4ed8;
+  --coral: #b42318;
+}
+
+
+/* ==================================================================
+   🆕 DAY 14 · Buttons in the header + the ☆ favorite button
+   ================================================================== */
+#theme-btn,
+#only-favs-btn,
+#forget-btn,
+.fav {
+  padding: 8px 14px;
+  border: 2px solid var(--border);
+  border-radius: 999px;
+  background: var(--panel);
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+}
+
+#theme-btn:hover,
+#only-favs-btn:hover,
+#forget-btn:hover,
+.fav:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Stack each card button and its ☆ button */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.card__btn {
+  flex: 1;
+}
+
+
+/* ==================================================================
+   🏆 CHALLENGE · toolbar + favorites counter
+   ================================================================== */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+#fav-count {
+  margin: 10px 0 0;
+  font-weight: 700;
+  color: var(--accent);
+}

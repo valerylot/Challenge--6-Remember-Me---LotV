@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--
+  📺 BINGE FINDER — index.html
+  Day 14 · CHALLENGE · "Remember Me" 🧠
+
+    id="search"        → the search box (🏆 now remembered)
+    id="theme-btn"     → the light/dark switch
+    id="only-favs-btn" → 🏆 show only ⭐ shows
+    id="forget-btn"    → 🏆 wipe everything the app remembers
+    id="fav-count"     → 🏆 "⭐ 3 favorites"
+    id="status"    → the 4 moods (⏳ 🎉 🫥 💥)
+    id="list"      → the show cards (each one gets a ☆ button now)
+    id="detail"    → the clicked show's details
+
+  How to run it: right-click index.html → Open with Live Server.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Binge Finder</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>📺 Binge Finder</h1>
+
+      <label for="search">Search shows</label>
+      <input id="search" type="search" placeholder="name or genre" autocomplete="off" />
+
+      <!-- 🏆 CHALLENGE · the toolbar -->
+      <div class="toolbar">
+        <button type="button" id="theme-btn">🌓 Light / Dark</button>
+        <button type="button" id="only-favs-btn">⭐ Only favorites</button>
+        <button type="button" id="forget-btn">🧹 Forget me</button>
+      </div>
+      <p id="fav-count">⭐ 0 favorites</p>
+
+      <p id="status" role="status" aria-live="polite"></p>
+    </header>
+
+    <main>
+      <section aria-labelledby="list-heading">
+        <h2 id="list-heading">Results</h2>
+        <ul id="list"></ul>
+      </section>
+
+      <section aria-labelledby="detail-heading">
+        <h2 id="detail-heading">Details</h2>
+        <div id="detail">
+          <p>👆 Click a show to see its details.</p>
+        </div>
+      </section>
+    </main>
+
+    <script src="scripts.js"></script>
+  </body>
+</html>
